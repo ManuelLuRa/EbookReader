@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">EbookReader</string>
     <string name="action_settings">Settings</string>
+    <!-- Generic Errors Text -->
+    <string name="connection_error">Connection Error</string>
+    <!-- LogInActivity Text -->
+    <string name="login_ok">Login OK</string>
+    <string name="login_fail">Login Failed. User name or password incorrect.</string>
+    <string name="login_dialog">Checking...</string>
+    <!-- fragment_login Text -->
+    <string name="login_button">Sign in your DropBox Account</string>
+
 </resources>
