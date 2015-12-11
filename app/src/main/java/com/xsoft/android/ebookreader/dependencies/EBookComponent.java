@@ -5,6 +5,7 @@ import android.content.Context;
 import com.xsoft.android.ebookreader.dependencies.data.modules.DataModule;
 import com.xsoft.android.ebookreader.dependencies.executor.modules.ExecutorModule;
 import com.xsoft.android.ebookreader.dependencies.repository.modules.RepositoryModule;
+import com.xsoft.android.ebookreader.domain.repository.EBooksListRepository;
 import com.xsoft.android.ebookreader.domain.repository.LoginUserRepository;
 import com.xsoft.android.ebookreader.executor.Executor;
 import com.xsoft.android.ebookreader.executor.MainThread;
@@ -41,11 +42,18 @@ import dagger.Component;
 )
 public interface EBookComponent {
     void inject(BaseActivity baseActivity);
-
+    //Context
     Context context();
+
+    //Thread control
     Executor executor();
     MainThread mainthread();
+
+    //Repositories
     LoginUserRepository loginRepository();
+    EBooksListRepository ebookListRepository();
+
+    //DataSources
     LoginDropBoxDataSource loginParseDataSource();
 
 }

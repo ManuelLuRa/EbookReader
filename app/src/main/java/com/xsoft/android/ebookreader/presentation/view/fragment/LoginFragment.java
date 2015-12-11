@@ -1,5 +1,6 @@
 package com.xsoft.android.ebookreader.presentation.view.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -36,6 +37,11 @@ import butterknife.OnClick;
  */
 public class LoginFragment extends BaseFragment implements LoginView {
 
+    public interface LoggedInListener {
+        void onLogginClicked();
+    }
+
+
     /* Local variables */
     @Inject LoginUserPresenter mLoginUserPresenter;
 
@@ -43,11 +49,13 @@ public class LoginFragment extends BaseFragment implements LoginView {
     @Bind(R.id.rl_progress)RelativeLayout rl_progress;
 
 
+    private LoggedInListener logginListener;
+
     public LoginFragment() { super(); }
 
     public static LoginFragment newInstance() {
-        LoginFragment userDetailsFragment = new LoginFragment();
-        return userDetailsFragment;
+        LoginFragment loginFragment = new LoginFragment();
+        return loginFragment;
     }
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,6 +65,12 @@ public class LoginFragment extends BaseFragment implements LoginView {
         return fragmentView;
     }
 
+    @Override public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof LoggedInListener) {
+            this.logginListener = (LoggedInListener) activity;
+        }
+    }
 
     @OnClick(R.id.btnSingIn) void onBtnSingInClicked(View w) { loginButtonClicked(); }
 
@@ -111,6 +125,12 @@ public class LoginFragment extends BaseFragment implements LoginView {
 
     }
 
+    public void viewEBookList() {
+        if (this.logginListener != null) {
+            this.logginListener.onLogginClicked();
+        }
+    }
+
     @Override public void showError(String message) {
         this.showToastMessage(message);
     }
@@ -121,7 +141,10 @@ public class LoginFragment extends BaseFragment implements LoginView {
         return getActivity().getApplicationContext();
     }
 
-    @Override public void showLoginOk() { this.showToastMessage(this.getContext().getString(R.string.login_ok)); }
+    @Override public void showLoginOk() {
+        this.showToastMessage(this.getContext().getString(R.string.login_ok));
+        viewEBookList();
+    }
 
     @Override public void showLoginError() { this.showToastMessage(this.getContext().getString(R.string.login_fail)); }
 

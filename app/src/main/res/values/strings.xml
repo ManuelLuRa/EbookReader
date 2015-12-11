@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">EbookReader</string>
     <string name="action_settings">Settings</string>
+    <!-- Activity Names -->
+    <string name="activity_title_ebook_list">EBooks List</string>
+    <string name="activity_title_user_details">EBook Details</string>
     <!-- Generic Errors Text -->
     <string name="connection_error">Connection Error</string>
     <!-- LogInActivity Text -->
@@ -9,5 +12,9 @@
     <string name="login_dialog">Checking...</string>
     <!-- fragment_login Text -->
     <string name="login_button">Sign in your DropBox Account</string>
+    <!-- Button retry Text -->
+    <string name="btn_text_retry">Retry</string>
+    <!-- Recycler View Text -->
+    <string name="string_content_description">Non accessible view</string>
 
 </resources>

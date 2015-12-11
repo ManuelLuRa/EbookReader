@@ -1,6 +1,8 @@
 package com.xsoft.android.ebookreader.dependencies.repository.modules;
 
+import com.xsoft.android.ebookreader.domain.repository.EBooksListRepository;
 import com.xsoft.android.ebookreader.domain.repository.LoginUserRepository;
+import com.xsoft.android.ebookreader.repository.ebooklist.EBooksListRepositoryImp;
 import com.xsoft.android.ebookreader.repository.loginuser.LoginUserRepositoryImp;
 
 import javax.inject.Singleton;
@@ -28,6 +30,10 @@ public final class RepositoryModule {
 
     @Provides @Singleton LoginUserRepository provideLoginUserRepository(LoginUserRepositoryImp loginUserRepositoryImp){
         return loginUserRepositoryImp;
+    }
+
+    @Provides @Singleton EBooksListRepository provideEBooksListRepository(EBooksListRepositoryImp eBooksListRepositoryImp){
+        return eBooksListRepositoryImp;
     }
 
 }

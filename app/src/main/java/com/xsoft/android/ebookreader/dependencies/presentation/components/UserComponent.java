@@ -4,6 +4,7 @@ import com.xsoft.android.ebookreader.dependencies.EBookComponent;
 import com.xsoft.android.ebookreader.dependencies.presentation.modules.ActivityModule;
 import com.xsoft.android.ebookreader.dependencies.presentation.modules.UserModule;
 import com.xsoft.android.ebookreader.dependencies.scoped.PerActivity;
+import com.xsoft.android.ebookreader.presentation.view.fragment.EBookListFragment;
 import com.xsoft.android.ebookreader.presentation.view.fragment.LoginFragment;
 
 import dagger.Component;
@@ -27,4 +28,5 @@ import dagger.Component;
 @Component(dependencies = EBookComponent.class, modules = {ActivityModule.class, UserModule.class})
 public interface UserComponent extends ActivityComponent {
     void inject(LoginFragment loginFragment);
+    void inject(EBookListFragment eBookListFragment);
 }

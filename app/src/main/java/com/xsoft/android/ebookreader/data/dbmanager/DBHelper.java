@@ -8,6 +8,7 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import com.xsoft.android.ebookreader.data.dbmanager.entities.DBEBook;
 import com.xsoft.android.ebookreader.data.dbmanager.entities.DBLogin;
 import com.xsoft.android.ebookreader.dependencies.scoped.DataBaseName;
 
@@ -43,6 +44,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, DBLogin.class);
+            TableUtils.createTable(connectionSource, DBEBook.class);
         } catch (SQLException e) {
             Log.e(TAG, "Unable to create tables", e);
         }
@@ -52,6 +54,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
             TableUtils.dropTable(connectionSource, DBLogin.class, true);
+            TableUtils.dropTable(connectionSource, DBEBook.class, true);
         } catch (SQLException e) {
             Log.e(TAG, "Unable to drop tables", e);
         }
@@ -60,6 +63,15 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
     public Dao<DBLogin, Integer> getLoginDao(){
         try {
             return getDao(DBLogin.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Dao<DBEBook, Integer> getEBookDao(){
+        try {
+            return getDao(DBEBook.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }

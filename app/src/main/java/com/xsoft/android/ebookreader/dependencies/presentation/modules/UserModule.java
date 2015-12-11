@@ -1,7 +1,9 @@
 package com.xsoft.android.ebookreader.dependencies.presentation.modules;
 
 import com.xsoft.android.ebookreader.dependencies.scoped.PerActivity;
+import com.xsoft.android.ebookreader.domain.GetEBookList;
 import com.xsoft.android.ebookreader.domain.GetLoginUserState;
+import com.xsoft.android.ebookreader.domain.interactors.GetEBookListInteractor;
 import com.xsoft.android.ebookreader.domain.interactors.GetLoginUserStateInteractor;
 
 import javax.inject.Named;
@@ -29,6 +31,11 @@ public final class UserModule {
 
     @PerActivity @Provides @Named("loginUser")
     GetLoginUserState provideGetLoginUserStateInteractor(GetLoginUserStateInteractor interactor) {
+        return interactor;
+    }
+
+    @PerActivity @Provides @Named("ebookList")
+    GetEBookList provideGetEBookListInteractor(GetEBookListInteractor interactor) {
         return interactor;
     }
 

@@ -50,7 +50,7 @@ public class LoginUserPresenter implements Presenter{
     }
 
     public void getLoginState(Activity activity){
-        mLoginView.showLoading();
+        this.showViewLoading();
         mGetLoginUserState.execute(activity, new GetLoginUserState.Callback() {
             @Override public void onGetLoginStateOk() {
                 hideViewLoading();
@@ -64,7 +64,8 @@ public class LoginUserPresenter implements Presenter{
 
             @Override public void onConnectionError() {
                 hideViewLoading();
-                showConnectionError(); }
+                showConnectionError();
+            }
         });
 
     }

@@ -1,9 +1,13 @@
 package com.xsoft.android.ebookreader.dependencies.data.modules;
 
 import com.xsoft.android.ebookreader.BuildConfig;
+import com.xsoft.android.ebookreader.data.ebookslist.datasources.database.EBooksListDBDataSourceImp;
+import com.xsoft.android.ebookreader.data.ebookslist.datasources.dropbox.EBooksListDropBoxDataSourceImp;
 import com.xsoft.android.ebookreader.data.login.datasources.database.LoginDBDataSourceImp;
 import com.xsoft.android.ebookreader.data.login.datasources.dropbox.LoginDropBoxDataSourceImp;
 import com.xsoft.android.ebookreader.dependencies.scoped.DataBaseName;
+import com.xsoft.android.ebookreader.repository.ebooklist.datasources.EBooksListDBDataSource;
+import com.xsoft.android.ebookreader.repository.ebooklist.datasources.EBooksListDropBoxDataSource;
 import com.xsoft.android.ebookreader.repository.loginuser.datasources.LoginDBDataSource;
 import com.xsoft.android.ebookreader.repository.loginuser.datasources.LoginDropBoxDataSource;
 
@@ -37,6 +41,15 @@ public final class DataModule {
     @Provides @Singleton
     LoginDBDataSource provideLoginDBDataSource (LoginDBDataSourceImp loginDBDataSourceImp){
         return loginDBDataSourceImp;
+    }
+
+    @Provides @Singleton
+    EBooksListDBDataSource provideEBooksListDBDataSource (EBooksListDBDataSourceImp eBooksListDBDataSourceImp){
+        return eBooksListDBDataSourceImp;
+    }
+    @Provides @Singleton
+    EBooksListDropBoxDataSource provideEBooksListDropBoxDataSource (EBooksListDropBoxDataSourceImp eBooksListDropBoxDataSourceImp){
+        return eBooksListDropBoxDataSourceImp;
     }
 
     @Provides @Singleton @DataBaseName String provideDatabaseName() {
