@@ -14,7 +14,7 @@ Libraries such as Dagger2 (DI), Butterknife(DI), ormlite(DB management) or Trans
 From now, the application is not running. Some problems have been detected:
 
   1. Auth token was not re-established to DropBox Api object after the application's first startup, making DropBox datasource give an exception.
-  2. When token is OK (on first startup) DropBox datasource sends a "Bad Request" message and creates an Exception. I don't know why this happens. I think DropBox Api object is Ok. I'm not sure if the path I used is correct.
+  2. When token is OK (on first startup) DropBox datasource sends a "Bad Request" message and creates an Exception when I ask for metadata. I don't know why this happens. I think DropBox Api object is Ok. I'm not sure if the path I used is correct.
 
 Future improvements:
   1. Solve bugs
