@@ -42,20 +42,20 @@ public class LoginUserRepositoryImp implements LoginUserRepository {
     public boolean isLoginOk(Activity activity) throws NetworkException, PersistException, CacheException {
         boolean result = false;
         try {
-            /*
             result = mLoginDBDataSource.isLoginOK();
             if(!result) {
                 String token = mDropBoxDataSource.getUsedToken(activity);
-                if (token != null)
+                if (token != null){
                     mLoginDBDataSource.persist(token);
-            }*/
-            String token = mDropBoxDataSource.getUsedToken(activity);
-
-            if(token != null)
-                result = true;
-
+                    result = true;
+                }
+            }
         }catch (NetworkException e1){
             throw new NetworkException();
+        }catch (PersistException e1){
+            throw new PersistException();
+        }catch (CacheException e1){
+            throw new CacheException();
         }
 
         return result;

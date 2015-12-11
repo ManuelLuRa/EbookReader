@@ -36,14 +36,17 @@ public class LoginDropBoxDataSourceImp implements LoginDropBoxDataSource {
     @Override
     public String getUsedToken(Activity activity) throws NetworkException {
 
-        if(!mDropBoxApi.getDBApi().getSession().authenticationSuccessful())
+        if (!mDropBoxApi.getDBApi().getSession().authenticationSuccessful())
             mDropBoxApi.getDBApi().getSession().startOAuth2Authentication(activity);
 
         //Retained response while auth finish.
-        while (!mDropBoxApi.getDBApi().getSession().authenticationSuccessful()){}
+        while (!mDropBoxApi.getDBApi().getSession().authenticationSuccessful()) {
+        }
 
-        if (mDropBoxApi.getDBApi().getSession().authenticationSuccessful())
+        if (mDropBoxApi.getDBApi().getSession().authenticationSuccessful()){
+            mDropBoxApi.getDBApi().getSession().finishAuthentication();
             return mDropBoxApi.getDBApi().getSession().getOAuth2AccessToken();
+    }
         else
             return null;
     }

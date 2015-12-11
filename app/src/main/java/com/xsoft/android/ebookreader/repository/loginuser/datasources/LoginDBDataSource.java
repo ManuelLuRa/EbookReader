@@ -20,9 +20,9 @@ import com.xsoft.android.ebookreader.repository.exceptions.PersistException;
  */
 public interface LoginDBDataSource {
 
-    boolean isLoginOK(String userName, String userPass) throws CacheException;
+    boolean isLoginOK() throws CacheException;
 
-    void persist(String userName, String userPass) throws PersistException;
+    void persist(String userToken) throws PersistException;
 
-    void delete(String userName) throws PersistException;
+    void delete(String userToken) throws PersistException;
 }

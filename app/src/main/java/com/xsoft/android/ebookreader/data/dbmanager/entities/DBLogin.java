@@ -23,13 +23,11 @@ import javax.inject.Inject;
 public class DBLogin implements TtlCachingObject {
 
     public static final String FIELD_ID = "id";
-    public static final String FIELD_USERNAME = "userName";
-    public static final String FIELD_USERPASS = "userPass";
+    public static final String FIELD_USERTOKEN = "userToken";
 
 
     @DatabaseField(generatedId = true, columnName = FIELD_ID) private int id;
-    @DatabaseField (columnName = FIELD_USERNAME) public String userName;
-    @DatabaseField (columnName = FIELD_USERPASS) public String userPass;
+    @DatabaseField (columnName = FIELD_USERTOKEN) public String userToken;
     @DatabaseField public long persistedTime;
 
     @Inject DBLogin(){}
@@ -43,20 +41,12 @@ public class DBLogin implements TtlCachingObject {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserToken() {
+        return userToken;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserPass() {
-        return userPass;
-    }
-
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
     }
 
     public void setPersistedTime(long persistedTime) {

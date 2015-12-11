@@ -39,14 +39,10 @@ public class LoginDBDataSourceImp implements LoginDBDataSource {
     }
 
     @Override
-    public boolean isLoginOK(String userName, String userPass) throws CacheException {
+    public boolean isLoginOK() throws CacheException {
         DBLogin dbl = null;
         try {
-            dbl =  dbhelper.getLoginDao().queryBuilder().where().
-                    eq(DBLogin.FIELD_USERNAME, userName).
-                    and().
-                    eq(DBLogin.FIELD_USERPASS, userPass).
-                    queryForFirst();
+            dbl =  dbhelper.getLoginDao().queryBuilder().queryForFirst();
         } catch (SQLException e) {
             throw new CacheException();
         }
@@ -54,11 +50,10 @@ public class LoginDBDataSourceImp implements LoginDBDataSource {
     }
 
     @Override
-    public void persist(String userName, String userPass) throws PersistException {
+    public void persist(String userToken) throws PersistException {
         try{
             DBLogin dbl = dblogin;
-            dbl.setUserName(userName);
-            dbl.setUserPass(userPass);
+            dbl.setUserToken(userToken);
             dbl.setPersistedTime(System.currentTimeMillis());
             persistor.persist(dbl);
         }catch (SQLException e){
@@ -67,11 +62,11 @@ public class LoginDBDataSourceImp implements LoginDBDataSource {
     }
 
     @Override
-    public void delete(String userName) throws PersistException {
+    public void delete(String userToken) throws PersistException {
         DBLogin dbl = null;
         try {
             dbl = dbhelper.getLoginDao().queryBuilder().where().
-                    eq(DBLogin.FIELD_USERNAME, userName).
+                    eq(DBLogin.FIELD_USERTOKEN, userToken).
                     queryForFirst();
             if (dbl != null)
                 dbhelper.getLoginDao().delete(dbl);
