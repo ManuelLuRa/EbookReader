@@ -17,9 +17,9 @@ From now, the application is not running. Some problems have been detected:
   2. When token is OK (on first startup) DropBox datasource sends a "Bad Request" message and creates an Exception. I don't know why this happens. I think DropBox Api object is Ok. I'm not sure if the path I used is correct.
 
 Future improvements:
-1. Solve bugs
-2. Start a "DetailEBookActivity" when an EBook object is selected. The process is nearly developed.
-3. Allow users to sort by name or date. 
-4. Allow change current View (ListView) to GridView, allowing to switch between views.
+  1. Solve bugs
+  2. Start a "DetailEBookActivity" when an EBook object is selected. The process is nearly developed.
+  3. Allow users to sort by name or date. 
+  4. Allow change current View (ListView) to GridView, allowing to switch between views.
 
 
