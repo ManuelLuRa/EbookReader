@@ -53,6 +53,6 @@ public final class DataModule {
     }
 
     @Provides @Singleton @DataBaseName String provideDatabaseName() {
-        return "graficaslarambla" + (BuildConfig.DEBUG ? "-dev" : "") + ".db";
+        return "ebookreader" + (BuildConfig.DEBUG ? "-dev" : "") + ".db";
     }
 }
