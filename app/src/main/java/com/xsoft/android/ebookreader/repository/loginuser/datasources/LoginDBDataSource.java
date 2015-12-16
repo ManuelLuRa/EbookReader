@@ -22,6 +22,8 @@ public interface LoginDBDataSource {
 
     boolean isLoginOK() throws CacheException;
 
+    String getPersistedToken() throws CacheException;
+
     void persist(String userToken) throws PersistException;
 
     void delete(String userToken) throws PersistException;

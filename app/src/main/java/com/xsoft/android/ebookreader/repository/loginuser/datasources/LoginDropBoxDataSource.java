@@ -3,6 +3,7 @@ package com.xsoft.android.ebookreader.repository.loginuser.datasources;
 
 import android.app.Activity;
 
+import com.xsoft.android.ebookreader.repository.exceptions.CacheException;
 import com.xsoft.android.ebookreader.repository.exceptions.NetworkException;
 
 /**
@@ -23,4 +24,6 @@ import com.xsoft.android.ebookreader.repository.exceptions.NetworkException;
 public interface LoginDropBoxDataSource {
 
     String getUsedToken(Activity activity) throws NetworkException;
+
+    void restoreSessionWithPreviousToken (String previousToken) throws CacheException;
 }

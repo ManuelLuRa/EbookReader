@@ -50,6 +50,21 @@ public class LoginDBDataSourceImp implements LoginDBDataSource {
     }
 
     @Override
+    public String getPersistedToken() throws CacheException {
+        DBLogin dbl = null;
+        String persistedToken = null;
+        try {
+            dbl =  dbhelper.getLoginDao().queryBuilder().queryForFirst();
+        } catch (SQLException e) {
+            throw new CacheException();
+        }
+
+        persistedToken = dbl.getUserToken();
+
+        return persistedToken;
+    }
+
+    @Override
     public void persist(String userToken) throws PersistException {
         try{
             DBLogin dbl = dblogin;

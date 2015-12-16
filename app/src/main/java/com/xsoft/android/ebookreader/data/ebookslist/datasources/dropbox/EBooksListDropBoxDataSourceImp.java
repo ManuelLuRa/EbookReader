@@ -30,7 +30,7 @@ public class EBooksListDropBoxDataSourceImp implements EBooksListDropBoxDataSour
 
     private final DropBoxApi mDropBoxApi;
 
-    private final String DROPBOX_PATH = "/";
+    private final String DROPBOX_PATH = "./";
     private final String EBOOK_EXTENSION = ".epub";
 
 

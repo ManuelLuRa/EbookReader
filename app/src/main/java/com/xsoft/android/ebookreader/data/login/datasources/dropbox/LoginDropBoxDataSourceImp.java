@@ -3,6 +3,7 @@ package com.xsoft.android.ebookreader.data.login.datasources.dropbox;
 import android.app.Activity;
 
 import com.xsoft.android.ebookreader.data.dropboxutils.DropBoxApi;
+import com.xsoft.android.ebookreader.repository.exceptions.CacheException;
 import com.xsoft.android.ebookreader.repository.exceptions.NetworkException;
 import com.xsoft.android.ebookreader.repository.loginuser.datasources.LoginDropBoxDataSource;
 
@@ -49,6 +50,11 @@ public class LoginDropBoxDataSourceImp implements LoginDropBoxDataSource {
     }
         else
             return null;
+    }
+
+    @Override
+    public void restoreSessionWithPreviousToken(String previousToken) throws CacheException {
+        mDropBoxApi.getDBApi().getSession().setOAuth2AccessToken(previousToken);
     }
 
 }

@@ -49,6 +49,8 @@ public class LoginUserRepositoryImp implements LoginUserRepository {
                     mLoginDBDataSource.persist(token);
                     result = true;
                 }
+            }else{
+                mDropBoxDataSource.restoreSessionWithPreviousToken(mLoginDBDataSource.getPersistedToken());
             }
         }catch (NetworkException e1){
             throw new NetworkException();
