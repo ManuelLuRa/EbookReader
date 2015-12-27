@@ -57,7 +57,7 @@ public class GetEBookListInteractor implements Interactor, GetEBookList {
         Collection<EBook> eBookCollection = null;
         try {
             eBookCollection = mRepository.getEBooksCollection();
-            if(eBookCollection.isEmpty())
+            if(eBookCollection.isEmpty() || eBookCollection == null)
                 notifyConnectionError();
             else
                 notifyGetEBooksListOk(eBookCollection);

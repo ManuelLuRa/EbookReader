@@ -7,6 +7,7 @@ import com.xsoft.android.ebookreader.domain.entities.EBook;
 import com.xsoft.android.ebookreader.repository.ebooklist.datasources.EBooksListDropBoxDataSource;
 import com.xsoft.android.ebookreader.repository.exceptions.NetworkException;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.inject.Inject;
@@ -30,11 +31,9 @@ public class EBooksListDropBoxDataSourceImp implements EBooksListDropBoxDataSour
 
     private final DropBoxApi mDropBoxApi;
 
-    private final String DROPBOX_PATH = "./";
+    private final String DROPBOX_PATH = "/";
     private final String EBOOK_EXTENSION = ".epub";
 
-
-    @Inject EBook mEBook;
 
     @Inject
     EBooksListDropBoxDataSourceImp(DropBoxApi dropBoxApi) {
@@ -43,26 +42,23 @@ public class EBooksListDropBoxDataSourceImp implements EBooksListDropBoxDataSour
 
     @Override
     public Collection<EBook> getEBookCollection() throws NetworkException {
-        Collection<EBook> eBookCollection = null;
+        Collection<EBook> eBookCollection = new ArrayList<EBook>();
         DropboxAPI.Entry rootDirEnt = null;
         try {
-                rootDirEnt = mDropBoxApi.getDBApi().metadata(DROPBOX_PATH, 1000, null,
-                        true, null);
-            if (!rootDirEnt.isDir || rootDirEnt.contents == null)
+                rootDirEnt = mDropBoxApi.getDBApi().metadata(DROPBOX_PATH, 1000, null, true, null);
+            if (!rootDirEnt.isDir || rootDirEnt.contents.size() == 0)
                 return null;
 
-            for (DropboxAPI.Entry childDirEnt : rootDirEnt.contents) {
-                // check if it still exists
-                if (childDirEnt.isDir && !childDirEnt.isDeleted
-                        && childDirEnt.contents != null) {
-                    // childDirEnt contents is already null, even though there are files inside this directory
-                    for (DropboxAPI.Entry fileEnt : childDirEnt.contents) {
-                        if (fileEnt.fileName().contains(EBOOK_EXTENSION))
-                            mEBook.setName(fileEnt.fileName());
-                    }
+            // childDirEnt contents is already null, even though there are files inside this directory
+            for (DropboxAPI.Entry fileEnt : rootDirEnt.contents) {
+                if (fileEnt.fileName().contains(EBOOK_EXTENSION)){
+                    EBook mEBook = new EBook();
+                    mEBook.setName(fileEnt.fileName());
                     eBookCollection.add(mEBook);
                 }
             }
+
+
             return eBookCollection;
         } catch (DropboxException e) {
         e.printStackTrace();

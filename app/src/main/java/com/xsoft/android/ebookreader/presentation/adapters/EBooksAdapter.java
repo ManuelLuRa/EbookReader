@@ -76,7 +76,7 @@ public class EBooksAdapter extends RecyclerView.Adapter<EBooksAdapter.EBookViewH
         return position;
     }
 
-    public void setUsersCollection(Collection<EBook> eBookCollection) {
+    public void setEbooksCollection(Collection<EBook> eBookCollection) {
         this.validateEBooksCollection(eBookCollection);
         this.eBooksCollection = (List<EBook>) eBookCollection;
         this.notifyDataSetChanged();

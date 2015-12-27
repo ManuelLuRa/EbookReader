@@ -46,7 +46,7 @@ public class EBooksListDBDataSourceImp implements EBooksListDBDataSource {
 
     @Override
     public Collection<EBook> getEBookCollection() throws CacheException {
-        Collection<EBook> eBookList = null;
+        Collection<EBook> eBookList = new ArrayList<EBook>();
         try {
             Collection<DBEBook> eBookCollection = dbhelper.getEBookDao().queryForAll();
             if (eBookCollection != null){

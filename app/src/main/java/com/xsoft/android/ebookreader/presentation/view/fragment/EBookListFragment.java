@@ -145,8 +145,8 @@ public class EBookListFragment extends BaseFragment implements EBookListView {
     }
 
     @Override
-    public void renderEBookList(Collection<EBook> userModelCollection) {
-
+    public void renderEBookList(Collection<EBook> ebooksCollection) {
+        this.eBooksAdapter.setEbooksCollection(ebooksCollection);
     }
 
     @Override
